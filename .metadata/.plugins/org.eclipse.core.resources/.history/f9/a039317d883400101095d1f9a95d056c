@@ -1,0 +1,82 @@
+package board;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class BoardController implements BoardInterface {
+	private ArrayList<Board> boards;
+	
+	public BoardController() {
+		boards = new ArrayList<Board>();
+	}
+	
+	public void printMenu() {
+		System.out.println("---menu---");
+		System.out.println("1. 게시글 추가 | 2. 게시글 리스트 | 3. 게시글 상세 ");
+		System.out.println("4. 게시글 수정 | 5. 게시글 삭제 | 6. 게시글 파일로 전송");
+		System.out.println("7. 종료");
+		System.out.print("> ");
+	}
+
+	@Override
+	public void addBoard(Scanner scan) {
+		// TODO Auto-generated method stub
+		String title = "";
+		while(title.length() == 0) {
+			System.out.print("제목 : ");
+			title = scan.nextLine();
+		}
+		
+		String writer = "";
+		while (writer.length() == 0) {
+			System.out.print("작성자 : ");
+			writer = scan.nextLine();
+		}
+		
+		System.out.println("내용 입력을 시작합니다. 종료하시려면 q를 입력해주세요.");
+		String content = "";
+		while (true) {
+			System.out.print("> ");
+			String line = scan.nextLine();
+			if (line.toLowerCase().equals("q")) {
+				System.out.print("입력을 종료하시려면 Y를 입력해주세요.> ");
+				if (scan.nextLine().toLowerCase().equals("y")) break;
+			}
+			content += line;
+		}
+		
+		boards.add(new Board(title, writer, content));
+		System.out.println("글이 등록되었습니다.");
+	}
+
+	@Override
+	public void printBoard() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void searchBoard(Scanner scan) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void modifyBoard(Scanner scan) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void removeBoard(Scanner scan) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void fileBoard() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

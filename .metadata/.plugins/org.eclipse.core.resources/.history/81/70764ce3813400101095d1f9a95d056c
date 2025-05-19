@@ -1,0 +1,31 @@
+package re01;
+
+// 싱글톤 카운트 객체 생성
+class Counter{
+	private int count;
+	private static Counter instance;
+	
+	private Counter() {
+		count = 0;
+	}
+	
+	public static Counter getInstance() {
+		if (instance == null) instance = new Counter();
+		return instance;
+	}
+	
+	// countMethod() // 호출시 count가 1씩 증가
+	public int countMethod() {
+		return ++count;
+	}
+}
+
+public class SingletonCount {
+	public static void main(String[] args) {
+		// 싱글톤 카운트 생성
+		Counter c1 = Counter.getInstance();
+		Counter c2 = Counter.getInstance();
+		
+		System.out.println(c1.countMethod());
+	}
+}

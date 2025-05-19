@@ -1,0 +1,50 @@
+package re01;
+
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class New04 {
+	public static void main(String[] args) {
+		/* 단어장
+		 * 단어 : 의미
+		 * map으로 생성
+		 * 입력받을 단어의 갯수를 입력 => 갯수만큼 map에 추가
+		 * 콘솔에 출력
+		 * */
+		
+		Scanner scan = new Scanner(System.in);
+		HashMap<String, String> words = new HashMap<>();
+		
+		while (true) {
+			try {
+				System.out.print("단어 갯수를 입력해주세요.> ");
+				int count = Integer.parseInt(scan.nextLine());
+				if (count <= 0) throw new Exception();
+				
+				int i = 1;
+				while (i <= count) {
+					System.out.print(i + "번 단어 : ");
+					String word = scan.nextLine();
+					if (words.get(word) != null) {
+						System.out.println("이미 등록한 단어입니다.");
+						continue;
+					}
+					System.out.print("뜻 : ");
+					words.put(word, scan.nextLine());
+					i++;
+				}
+				
+				break;
+			} catch (NumberFormatException e) {
+				System.out.println("숫자가 아닙니다.");
+			} catch (Exception e) {
+				System.out.println("숫자가 너무 작습니다.");
+			}
+		}
+		scan.close();
+		
+		for (String word : words.keySet()) {
+			System.out.println(word + " : " + words.get(word));
+		}
+	}
+}
