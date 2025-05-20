@@ -1,0 +1,11 @@
+package product;
+
+import * from com.mysql.cj.jdbc.Driver;
+
+public class DatabaseConnect {
+	// DB 접속
+	// DB Driver, url, user, password
+	// mysql : com.mysql.cj.jdbc.Driver
+	
+	
+}

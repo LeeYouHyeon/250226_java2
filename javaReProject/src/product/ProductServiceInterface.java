@@ -1,0 +1,15 @@
+package product;
+
+import java.util.List;
+
+public interface ProductServiceInterface {
+	int insert(Product p);
+
+	List<Product> getList();
+
+	Product getProduct(int pno);
+
+	int modify(Product p);
+
+	int remove(int pno);
+}

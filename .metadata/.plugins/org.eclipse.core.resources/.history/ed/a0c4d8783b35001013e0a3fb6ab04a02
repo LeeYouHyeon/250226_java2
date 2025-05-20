@@ -1,0 +1,6 @@
+package product;
+
+public interface ProductDAOInterface {
+	int insert(Product p);
+
+}

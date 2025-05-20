@@ -1,0 +1,6 @@
+package product;
+
+public class DatabaseConnect {
+	// DB 접속
+	// DB Driver, url, user, password
+}

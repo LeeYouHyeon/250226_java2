@@ -1,0 +1,79 @@
+package product;
+
+import java.util.Scanner;
+
+public class ProductController {
+	/*
+	 * controller <-> service <-> DAO <-> DB DBConnect(싱글톤) : DB와 DAO를 한 번 이어줌 생성자에서
+	 * 모든 메뉴 분기를 처리
+	 */
+
+	private Scanner scan;
+	private ProductServiceInterface psv;
+	private boolean flag; // 종료변수
+
+	public ProductController() {
+		scan = new Scanner(System.in);
+		psv = new ProductService();
+		flag = true; // 실행 상태
+		printMenu();
+	}
+
+	private void printMenu() {
+		// 메뉴 생성
+		while (flag) {
+			System.out.println("--상품관리프로그램--");
+			System.out.println("1. 상품등록 | 2. 상품리스트 | 3. 상품상세");
+			System.out.println("4. 상품수정 | 5. 상품삭제 | 6. 종료");
+			System.out.print("메뉴선택> ");
+			try {
+				int menu = Integer.parseInt(scan.nextLine());
+				switch (menu) {
+				case 1:
+					register();
+					break;
+				case 2:
+					list();
+					break;
+				case 3:
+					detail();
+					break;
+				case 4:
+					modify();
+					break;
+				case 5:
+					remove();
+					break;
+				case 6:
+				default:
+					flag = false;
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+
+	private void register() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void list() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void detail() {
+		// TODO Auto-generated method stub
+
+	}
+	private void modify() {
+		// TODO Auto-generated method stub
+		
+	}
+	private void remove() {
+		// TODO Auto-generated method stub
+		
+	}
+}

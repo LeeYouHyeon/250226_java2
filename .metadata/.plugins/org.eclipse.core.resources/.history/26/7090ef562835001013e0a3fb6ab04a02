@@ -1,0 +1,10 @@
+/**
+ * 
+ */
+/**
+ * 
+ */
+module javaReProject {
+	requires java.sql;
+	requires mysql.connector.cj;
+}

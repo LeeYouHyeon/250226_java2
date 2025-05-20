@@ -1,0 +1,116 @@
+package product;
+
+import java.util.List;
+import java.util.Scanner;
+
+public class ProductController {
+	/*
+	 * controller <-> service <-> DAO <-> DB DBConnect(싱글톤) : DB와 DAO를 한 번 이어줌 생성자에서
+	 * 모든 메뉴 분기를 처리
+	 */
+
+	private Scanner scan;
+	private ProductServiceInterface psv;
+	private boolean flag; // 종료변수
+
+	public ProductController() {
+		scan = new Scanner(System.in);
+		psv = new ProductService();
+		flag = true; // 실행 상태
+		printMenu();
+	}
+
+	private void printMenu() {
+		// 메뉴 생성
+		while (flag) {
+			System.out.println("--상품관리프로그램--");
+			System.out.println("1. 상품등록 | 2. 상품리스트 | 3. 상품상세");
+			System.out.println("4. 상품수정 | 5. 상품삭제 | 6. 종료");
+			System.out.print("메뉴선택> ");
+			try {
+				int menu = Integer.parseInt(scan.nextLine());
+				switch (menu) {
+				case 1:
+					register();
+					break;
+				case 2:
+					list();
+					break;
+				case 3:
+					detail();
+					break;
+				case 4:
+					update();
+					break;
+				case 5:
+					remove();
+					break;
+				case 6:
+					flag = false;
+					break;
+				default:
+					throw new Exception();
+				}
+			} catch (Exception e) {
+				System.out.println("잘못된 메뉴");
+			}
+		}
+	}
+
+	private void register() {
+		// 상품등록
+		System.out.print("상품명 : ");
+		String pname = scan.nextLine();
+		
+		int price = -1;
+		while (price < 0) {
+			try {
+				System.out.print("가격 : ");
+				price = Integer.parseInt(scan.nextLine());
+				if (price < 0) throw new Exception();
+			} catch (Exception e) {
+				System.out.println("잘못된 입력");
+			}
+		}
+		
+		System.out.println("상품상세:");
+		String madeby = scan.nextLine();
+		
+		Product p = new Product(pname, price, madeby);
+		
+		// service에게 등록을 요청하는 메서드 작성
+		// insert 메서드를 실행하면 1(1개의 행이 insert) / 0 또는 error
+		int isOK = psv.insert(p);
+		System.out.println("상품등록> " + ((isOK > 0) ? "성공" : "실패"));
+	}
+
+	private void list() {
+		List<Product> list = psv.getList();
+		if (list.isEmpty()) System.out.println("목록이 비어있습니다.");
+		for (Product p : list) {
+			System.out.println(p);
+		}
+	}
+
+	private void detail() {
+		System.out.print("상품번호:");
+		try {
+			int pno = Integer.parseInt(scan.nextLine());
+			
+			Product p = psv.getProduct(pno);
+			System.out.println(p);
+		} catch (NumberFormatException e) {
+			System.out.println("잘못된 상품번호");
+		} catch (NullPointerException e) {
+			System.out.println("없는 번호");
+		}
+	}
+	private void update() {
+		// TODO Auto-generated method stub
+		
+	}
+	private void remove() {
+		// TODO Auto-generated method stub
+		
+	}
+}

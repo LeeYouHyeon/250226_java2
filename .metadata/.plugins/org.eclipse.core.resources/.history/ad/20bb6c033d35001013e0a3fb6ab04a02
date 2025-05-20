@@ -1,0 +1,29 @@
+package product;
+
+import java.util.List;
+
+public class ProductService implements ProductServiceInterface {
+	// controller <-> service <-> DAO <-> DB
+	// DAOInterface 연결 후 생성자에서 객체 생성
+	private ProductDAOInterface dao;
+	
+	public ProductService() {
+		dao = new ProductDAO();
+		
+	}
+
+	@Override
+	public int insert(Product p) {
+		// 만약 객체의 테이블이 나눠지면 여기서 분리(각자 DAO에게 요청)
+		System.out.println("insert productService in");
+		return dao.insert(p);
+	}
+
+	@Override
+	public List<Product> getList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	// 컨트롤러에서 오는 처리를 맡아서 함
+}

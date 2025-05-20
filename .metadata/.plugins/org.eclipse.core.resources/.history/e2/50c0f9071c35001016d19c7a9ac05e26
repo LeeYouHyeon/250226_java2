@@ -1,0 +1,13 @@
+package product;
+
+public class Product {
+	private int pno; // DB에서 자동 생성
+	private String pname;
+	private int price;
+	private String regdate; // DB 자동 생성
+	private String text;
+	
+	// 생성자
+	public Product() {}
+	
+}

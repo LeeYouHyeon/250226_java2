@@ -1,0 +1,13 @@
+package product;
+
+import java.sql.Connection;
+
+public class ProductDAO implements ProductDAOInterface {
+	// DAO <-> DBConnect
+	// DB 연결 객체
+	private Connection conn;
+	
+	public ProductDAO() {
+		
+	}
+}

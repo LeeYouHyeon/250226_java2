@@ -1,0 +1,23 @@
+package product;
+
+import java.sql.Connection;
+
+public class DatabaseConnect {
+	// DB 접속
+	// DB Driver, url, user, password
+	// mysql : com.mysql.cj.jdbc.Driver
+	// url : jdbc:mysql://localhost:3306/DB명
+	
+	private static DatabaseConnect dbc = new DatabaseConnect();
+	private Connection conn = null;
+	private String jdbcDriver = "com.mysql.cj.jdbc.Driver";
+	private String jdbcUrl = "jdbc:mysql://localhost:3306/javadb";
+	
+	private DatabaseConnect() {
+		try {
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

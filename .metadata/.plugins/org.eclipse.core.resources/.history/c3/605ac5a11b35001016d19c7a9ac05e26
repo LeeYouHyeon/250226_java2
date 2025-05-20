@@ -1,0 +1,13 @@
+package product;
+
+public class Product {
+	private int pno;
+	private String pname;
+	private int price;
+	private String regdate;
+	private String text;
+	
+	// 생성자
+	public Product() {}
+	
+}

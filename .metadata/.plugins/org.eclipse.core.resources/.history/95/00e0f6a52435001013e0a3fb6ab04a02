@@ -1,0 +1,8 @@
+package product;
+
+public class ProductService implements ProductServiceInterface {
+	// controller <-> service <-> DAO <-> DB
+	// DAOInterface 연결 후 생성자에서 객체 생성
+	private ProductDAOInterface dao;
+	
+}

@@ -1,0 +1,66 @@
+package product;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProductDAO implements ProductDAOInterface {
+	// DAO <-> DBConnect
+	// DB 연결 객체
+	private Connection conn;
+	// SQL 쿼리 저장 스트링
+	private String query = "";
+	// SQL 구문을 실행시키는 기능을 하는 객체
+	private PreparedStatement pst;
+
+	public ProductDAO() {
+		// DBConnect class 생성 (싱글톤)
+		DatabaseConnect dbc = DatabaseConnect.getInstance();
+		conn = dbc.getConnection();
+	}
+
+	@Override
+	public int insert(Product p) {
+		// product 객체를 DB에 등록
+		query = "insert into product(pname, price, madeby) value (?,?,?)";
+		try {
+			pst = conn.prepareStatement(query);
+			pst.setString(1, p.getPname()); // query문의 물음표는 1부터 시작
+			pst.setInt(2, p.getPrice());
+			pst.setString(3, p.getMadeby());
+
+			// insert, update, delete => executeUpdate() return (처리된 갯수)
+			return pst.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("insert 구문 에러");
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	public List<Product> getList() {
+		query = "select * from product order by pno desc";
+		List<Product> list = new ArrayList<>();
+
+		try {
+			pst = conn.prepareStatement(query);
+			// select 구문은 리턴되는 리스트가 있음.
+			// select => pst.executeQuery();
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				list.add(new Product(rs.getInt("pno"), rs.getString("pname"), rs.getInt("price"),
+						rs.getString("regdate"), rs.getString("madeby")));
+			}
+			System.out.println(rs);
+			return list;
+		} catch (SQLException e) {
+			System.out.println("select 구문 에러");
+			e.printStackTrace();
+		}
+		return null;
+	}
+}

@@ -1,0 +1,29 @@
+package product;
+
+public class Product {
+	private int pno; // DB에서 자동 생성
+	private String pname;
+	private int price;
+	private String regdate; // DB 자동 생성
+	private String madeby;
+	
+	// 생성자
+	public Product() {}
+
+	// 등록용
+	public Product(String pname, int price, String madeby) {
+		this.pname = pname;
+		this.price = price;
+		this.madeby = madeby;
+	}
+
+	// 리스트 =>
+	public Product(int pno, String pname, int price, String regdate, String madeby) {
+		this.pno = pno;
+		this.pname = pname;
+		this.price = price;
+		this.regdate = regdate;
+		this.madeby = madeby;
+	}
+	
+}
